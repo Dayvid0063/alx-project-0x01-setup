@@ -6,16 +6,16 @@ import { UserData } from "@/interfaces";
 import { useState } from "react";
 
 interface UsersPageProps {
-    users: UserProps[];
+    posts: UserProps[];
 }
 
-const Users: React.FC<UsersPageProps> = ({ users: initialUsers }) => {
+const Users: React.FC<UsersPageProps> = ({ posts: initialPosts }) => { // Changed from users to posts
     const [isModalOpen, setModalOpen] = useState(false);
-    const [users, setUsers] = useState(initialUsers);
+    const [posts, setPosts] = useState(initialPosts);
 
     const handleAddUser = (newUser: UserData) => {
-        const userWithId = { ...newUser, id: users.length + 1 };
-        setUsers([userWithId, ...users]);
+        const userWithId = { ...newUser, id: posts.length + 1 };
+        setPosts([userWithId, ...posts]);
     };
 
     return (
@@ -33,7 +33,7 @@ const Users: React.FC<UsersPageProps> = ({ users: initialUsers }) => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {users.map((user) => (
+                    {posts.map((user) => (
                         <UserCard key={user.id} {...user} />
                     ))}
                 </div>
@@ -51,11 +51,11 @@ const Users: React.FC<UsersPageProps> = ({ users: initialUsers }) => {
 
 export async function getStaticProps() {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const users = await response.json();
+    const posts = await response.json();
 
     return {
         props: {
-            users
+            posts
         }
     };
 }
