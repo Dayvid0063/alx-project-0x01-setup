@@ -1,7 +1,8 @@
 import Header from "@/components/layout/Header";
 import UserCard from "@/components/common/UserCard";
 import UserModal from "@/components/common/UserModal";
-import { UserData, UserProps } from "@/interfaces";
+import { UserProps } from "@/interfaces";
+import { UserData } from "@/interfaces";
 import { useState } from "react";
 
 interface UsersPageProps {
